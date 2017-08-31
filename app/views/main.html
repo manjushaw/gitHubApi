@@ -1,0 +1,43 @@
+<div class="jumbotron col-md-12 no-padding" data-ng-init="main.init()">
+  <h3 class="col-md-12">
+    <label class="">Enter name of the Repository</label>
+    <input class="repo-input" type="text" name="repoName" ng-model="main.dispName">
+    <button type="submit" ng-click="main.init()">Generate Stats</button>
+  </h3>
+  <div class="col-md-12 stats-color">
+    <h2>Open Issue Statistics:</h2>
+    <div>
+      <label>Count:&nbsp;&nbsp;{{main.openIssues.openIssuesCount}}</label>
+    </div>
+    <div>
+      <label>Average Age:&nbsp;&nbsp;{{main.openIssues.avgAgeOfIssues}} days</label>
+    </div>
+    <div>
+      <label>Oldest Creation Date:&nbsp;&nbsp;{{main.openIssues.oldestOpenIssueCreated}}</label>
+    </div>
+    <div>
+      <label>Latest Creation Date:&nbsp;&nbsp;{{main.openIssues.latestOpenIssueCreated}}</label>
+    </div>
+  </div>
+  <!--<p><strong>Grid with native pagination controls</strong></p>
+  <div ui-grid="main.gridOptions1" ui-grid-pagination style="width:600px;"></div>-->
+  <div class="container col-md-12 table-container" ng-show="main.showTable">
+    <label class="col-md-12 table-header">Issue Table</label>
+    <p>
+    <table class="col-md-12 table table-striped table-body" id="grid" ng-table="main.tableParams">
+      <tr ng-repeat="openIssue in $data">
+        <td class="" title="'Issue Title'"><a ng-href="{{openIssue.html_url}}" target="_blank">{{openIssue.title}}</a>
+        </td>
+        <td class="align-center" title="'Created date'" sortable="'created_at'">
+          {{openIssue.created_at}}</td>
+        <td class="align-center" title="'Number of comments'" sortable="'comments'">
+          {{openIssue.comments}}</td>
+        <td class="align-center" title="'Last updated'" sortable="'updated_at'">
+          {{openIssue.updated_at}}</td>
+        <td class="align-center" title="'Labels'">
+          {{openIssue.labels[0].name}}</td>
+      </tr>
+    </table>
+    </p>
+  </div>
+</div>
